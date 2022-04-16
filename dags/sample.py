@@ -34,7 +34,8 @@ start = BashOperator(
     dag=dag
 )
 
-training = KubernetesPodOperator(pod_template_file="./sample_pod.yaml",
+training = KubernetesPodOperator(task_id="inference",
+                                 pod_template_file="./sample_pod.yaml",
                                  dag=dag
 )
 
