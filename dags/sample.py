@@ -37,8 +37,8 @@ start = BashOperator(
 training = KubernetesPodOperator(task_id="inference",
                                  name="inference",
                                  namespace="airflow",
-                                 cmds=["echo"],
-                                 image="rest_python:1.0.0",
+                                 cmds=["python", "/root/code/main.py"],
+                                 image="rest_python:1.0.1",
                                  in_cluster=True,
                                  dag=dag
 )
