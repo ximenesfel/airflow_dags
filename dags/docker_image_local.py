@@ -31,7 +31,8 @@ dag = DAG('example_kubernetes_pod', schedule_interval=None, default_args=default
 with dag:
     KubernetesPodOperator(
         namespace=namespace,
-        image="hello-world",
+        cmds=["echo"],
+        image="rest_python:latest",
         labels={"foo": "bar"},
         name="airflow-test-pod",
         task_id="task-one",
