@@ -36,7 +36,7 @@ start = BashOperator(
 
 training = KubernetesPodOperator(task_id="inference",
                                  name="inference",
-                                 namespace="application",
+                                 namespace="airflow",
                                  image="nginx:1.14.2",
                                  in_cluster=True,
                                  dag=dag
