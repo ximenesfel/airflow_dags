@@ -38,7 +38,7 @@ training = KubernetesPodOperator(task_id="inference",
                                  name="inference",
                                  namespace="airflow",
                                  cmds=["python", "/root/code/main.py"],
-                                 image="rest_python:1.0.1",
+                                 image="rest_python_prod:1.0.0",
                                  in_cluster=True,
                                  dag=dag
 )
