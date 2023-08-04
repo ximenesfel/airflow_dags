@@ -28,7 +28,7 @@ training = KubernetesPodOperator(task_id="inference",
                                  name="inference",
                                  namespace="test",
                                  cmds=["echo"],
-                                 image="rest_python_prod:1.0.0",
+                                 image="python:3.11.1",
                                  in_cluster=True,
                                  dag=dag
 )
