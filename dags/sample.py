@@ -1,12 +1,7 @@
 from datetime import timedelta
 from airflow import DAG
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
-from airflow.operators.python_operator import PythonOperator
-from airflow.operators.bash_operator import BashOperator
-from airflow.models import DagRun
-from airflow.utils.state import State
 from airflow.utils.dates import days_ago
-from kubernetes.client import models as k8s
 
 default_args = {
     'owner': 'Airflow',
@@ -28,25 +23,15 @@ dag = DAG(
     concurrency=10,
 )
 
-start = BashOperator(
-    task_id='start',
-    bash_command='echo 1',
-    dag=dag
-)
 
 training = KubernetesPodOperator(task_id="inference",
                                  name="inference",
-                                 namespace="airflow",
-                                 cmds=["python", "/root/code/main.py"],
+                                 namespace="test",
+                                 cmds=["echo"],
                                  image="rest_python_prod:1.0.0",
                                  in_cluster=True,
                                  dag=dag
 )
 
-finish = BashOperator(
-    task_id='finish',
-    bash_command='echo 1',
-    dag=dag
-)
 
-start >> training >> finish
+training
